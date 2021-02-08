@@ -147,16 +147,14 @@ function tarea_repetida($columna,$valor)
 
 }
 
-function modificar_tarea($tarea, $categorias,$usuario)
-{
+function modificar_tarea($tarea, $categorias,$usuario, $id_tarea) {
     if ($conexion = conectar()) {
 		$consulta_id_usuario="SELECT id_usuario FROM usuarios where nombre='$usuario'";
 		if ($resultado_id_usuario = mysqli_query($conexion, $consulta_id_usuario)) {
 			if ($fila = mysqli_fetch_array($resultado_id_usuario)) {
 				$id_usuario=$fila["id_usuario"];
 				//igual que la función de añadir  pero modificamos en vez de introducir
-				$consulta = "UPDATE  tareas SET nombre_tarea='$tarea' , id_usuario='$id_usuario'";
-		
+				$consulta = "UPDATE  tareas SET nombre_tarea='$tarea' , id_usuario='$id_usuario' WHERE id_tarea='$id_tarea'";
 				if (mysqli_query($conexion, $consulta)) {
 					$consulta_compleja = "SELECT id_tarea FROM tareas where nombre_tarea='$tarea'";
 					if ($resultado_consulta2 = mysqli_query($conexion, $consulta_compleja)) {

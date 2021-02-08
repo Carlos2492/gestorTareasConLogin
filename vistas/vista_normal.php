@@ -17,8 +17,7 @@ if(isset($_POST["btnMod"]))
 
 	if (!$_POST["nuevo_nombre"] == "") {
 		if (!tarea_repetida("nombre_tarea", $_POST["nuevo_nombre"])) {
-	
-			modificar_tarea($_POST["nuevo_nombre"], $array_categorias, $_SESSION["usuario"]);
+			modificar_tarea($_POST["nuevo_nombre"], $array_categorias, $_SESSION["usuario"], $_POST["btnMod"]);
 		}
 	}
 	
@@ -57,7 +56,7 @@ if (isset($_POST["btnAdd"])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="assets/css/estilo.css" rel="stylesheet" />
-	<title>Ejercicio 2</title>
+	<title>Gestor de tareas</title>
 </head>
 
 <body>
@@ -178,8 +177,8 @@ if (isset($_POST["btnModificar"])) {
 						<input type="checkbox" name="CSS" value="CSS">
 					</label>
 				</div>
-				<div class="input-container">
-					<button class="btn-add" type="submit" name="btnMod" value="Modificar">Modificar</button>
+				<div class="input-container">						
+					<button class="btn-add" type="submit" name="btnMod" value="<?php echo  $_POST["btnModificar"];?>">Modificar</button>
 				</div>
 		</form>
 		</div>
